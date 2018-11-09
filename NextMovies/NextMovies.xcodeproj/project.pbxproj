@@ -27,6 +27,7 @@
 		E987366021961CEC0021BD40 /* MoviesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E987365F21961CEC0021BD40 /* MoviesWorker.swift */; };
 		E987366221961FB20021BD40 /* MockMoviesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E987366121961FB20021BD40 /* MockMoviesWorker.swift */; };
 		E9873665219626120021BD40 /* CustomizeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9873664219626120021BD40 /* CustomizeImageView.swift */; };
+		E9873667219639A00021BD40 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9873666219639A00021BD40 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		E987365F21961CEC0021BD40 /* MoviesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesWorker.swift; sourceTree = "<group>"; };
 		E987366121961FB20021BD40 /* MockMoviesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoviesWorker.swift; sourceTree = "<group>"; };
 		E9873664219626120021BD40 /* CustomizeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeImageView.swift; sourceTree = "<group>"; };
+		E9873666219639A00021BD40 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 		E9873649219606410021BD40 /* MovieDetail */ = {
 			isa = PBXGroup;
 			children = (
+				E9873666219639A00021BD40 /* MovieDetailViewController.swift */,
 			);
 			path = MovieDetail;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				E987365A21961B0A0021BD40 /* Movie.swift in Sources */,
 				E987366221961FB20021BD40 /* MockMoviesWorker.swift in Sources */,
 				E9873658219612BD0021BD40 /* HighlightMovieCollectionViewCell.swift in Sources */,
+				E9873667219639A00021BD40 /* MovieDetailViewController.swift in Sources */,
 				E987361D2195F71D0021BD40 /* NextMovies.xcdatamodeld in Sources */,
 				E9873656219612A50021BD40 /* HighlightMoviesTableViewCell.swift in Sources */,
 				E987365C21961B7B0021BD40 /* NetworkManager.swift in Sources */,

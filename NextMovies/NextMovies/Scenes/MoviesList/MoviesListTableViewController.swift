@@ -18,18 +18,23 @@ class MoviesListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+//        self.view.tintColor = UIColor.white
+        self.navigationController?.view.tintColor = UIColor.white
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+
         self.loadMovies()
     }
     
     private func loadMovies() {
         
         let worker = MockMoviesWorker()
-        MoviesWorker(worker: worker).getMovies(ofPage: 0) { (movies, error) in
+        MoviesWorker(worker: worker).getMovies(ofPage: 0) { [weak self] (movies, error) in
+            
+            guard let self = self else { return }
             
             if error == nil, let movies = movies {
                 
+                //TODO - Colocar empty state na table view
                 self.movies = movies
                 self.tableView.reloadData()
             }else{
