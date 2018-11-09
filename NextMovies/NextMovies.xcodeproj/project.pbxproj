@@ -21,6 +21,12 @@
 		E9873654219612580021BD40 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9873653219612580021BD40 /* MovieTableViewCell.swift */; };
 		E9873656219612A50021BD40 /* HighlightMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9873655219612A50021BD40 /* HighlightMoviesTableViewCell.swift */; };
 		E9873658219612BD0021BD40 /* HighlightMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9873657219612BC0021BD40 /* HighlightMovieCollectionViewCell.swift */; };
+		E987365A21961B0A0021BD40 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E987365921961B0A0021BD40 /* Movie.swift */; };
+		E987365C21961B7B0021BD40 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E987365B21961B7A0021BD40 /* NetworkManager.swift */; };
+		E987365E21961B820021BD40 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E987365D21961B820021BD40 /* CoreDataManager.swift */; };
+		E987366021961CEC0021BD40 /* MoviesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E987365F21961CEC0021BD40 /* MoviesWorker.swift */; };
+		E987366221961FB20021BD40 /* MockMoviesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E987366121961FB20021BD40 /* MockMoviesWorker.swift */; };
+		E9873665219626120021BD40 /* CustomizeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9873664219626120021BD40 /* CustomizeImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +73,12 @@
 		E9873653219612580021BD40 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		E9873655219612A50021BD40 /* HighlightMoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightMoviesTableViewCell.swift; sourceTree = "<group>"; };
 		E9873657219612BC0021BD40 /* HighlightMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightMovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		E987365921961B0A0021BD40 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		E987365B21961B7A0021BD40 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E987365D21961B820021BD40 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		E987365F21961CEC0021BD40 /* MoviesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesWorker.swift; sourceTree = "<group>"; };
+		E987366121961FB20021BD40 /* MockMoviesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoviesWorker.swift; sourceTree = "<group>"; };
+		E9873664219626120021BD40 /* CustomizeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,15 +157,16 @@
 		E98736132195F71D0021BD40 /* NextMovies */ = {
 			isa = PBXGroup;
 			children = (
+				E9873663219622E30021BD40 /* Custom */,
 				E987364E2196076B0021BD40 /* SupportFiles */,
 				E98736202195F71E0021BD40 /* LaunchScreen.storyboard */,
 				E98736182195F71D0021BD40 /* Main.storyboard */,
 				E98736232195F71E0021BD40 /* Info.plist */,
 				E98736462196061E0021BD40 /* Managers */,
+				E987364D219606AE0021BD40 /* Workers */,
 				E987364C2196066C0021BD40 /* Models */,
 				E9873645219606170021BD40 /* Scenes */,
 				E9873647219606230021BD40 /* Utils */,
-				E987364D219606AE0021BD40 /* Workers */,
 			);
 			path = NextMovies;
 			sourceTree = "<group>";
@@ -190,6 +203,8 @@
 		E98736462196061E0021BD40 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				E987365B21961B7A0021BD40 /* NetworkManager.swift */,
+				E987365D21961B820021BD40 /* CoreDataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -235,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				E987364F219607810021BD40 /* CoreDataModels */,
+				E987365921961B0A0021BD40 /* Movie.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,6 +258,8 @@
 		E987364D219606AE0021BD40 /* Workers */ = {
 			isa = PBXGroup;
 			children = (
+				E987365F21961CEC0021BD40 /* MoviesWorker.swift */,
+				E987366121961FB20021BD40 /* MockMoviesWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -273,6 +291,14 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
+		E9873663219622E30021BD40 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				E9873664219626120021BD40 /* CustomizeImageView.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -284,6 +310,7 @@
 				E987360D2195F71D0021BD40 /* Sources */,
 				E987360E2195F71D0021BD40 /* Frameworks */,
 				E987360F2195F71D0021BD40 /* Resources */,
+				AE0C108055D5F42819905B1F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -457,6 +484,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AE0C108055D5F42819905B1F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NextMovies/Pods-NextMovies-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NextMovies/Pods-NextMovies-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -464,10 +511,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9873665219626120021BD40 /* CustomizeImageView.swift in Sources */,
+				E987365A21961B0A0021BD40 /* Movie.swift in Sources */,
+				E987366221961FB20021BD40 /* MockMoviesWorker.swift in Sources */,
 				E9873658219612BD0021BD40 /* HighlightMovieCollectionViewCell.swift in Sources */,
 				E987361D2195F71D0021BD40 /* NextMovies.xcdatamodeld in Sources */,
 				E9873656219612A50021BD40 /* HighlightMoviesTableViewCell.swift in Sources */,
+				E987365C21961B7B0021BD40 /* NetworkManager.swift in Sources */,
 				E9873652219612480021BD40 /* MoviesListTableViewController.swift in Sources */,
+				E987366021961CEC0021BD40 /* MoviesWorker.swift in Sources */,
+				E987365E21961B820021BD40 /* CoreDataManager.swift in Sources */,
 				E9873654219612580021BD40 /* MovieTableViewCell.swift in Sources */,
 				E98736152195F71D0021BD40 /* AppDelegate.swift in Sources */,
 			);

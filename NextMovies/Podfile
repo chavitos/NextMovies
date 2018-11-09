@@ -6,6 +6,8 @@ target 'NextMovies' do
   use_frameworks!
 
   # Pods for NextMovies
+  pod 'Alamofire', '~> 4.5'
+  pod 'SDWebImage', '~> 4.0'
 
   target 'NextMoviesTests' do
     inherit! :search_paths

@@ -10,15 +10,37 @@ import UIKit
 
 class HighlightMoviesTableViewCell: UITableViewCell {
 
+    let movieCollectionCellIdentifier = "movieCollectionCell"
+    
+    @IBOutlet weak var collection: UICollectionView!
+    var movies:[Movie] = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.collection.dataSource = self
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func configCell(withMovies movies:[Movie]) {
+        
+        self.movies = movies
+        collection.reloadData()
     }
+}
 
+extension HighlightMoviesTableViewCell:UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movies.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collection.dequeueReusableCell(withReuseIdentifier: movieCollectionCellIdentifier, for: indexPath) as? HighlightMovieCollectionViewCell else { return UICollectionViewCell() }
+        
+        let movie = movies[indexPath.row]
+        cell.configCell(withMovie: movie)
+        
+        return cell
+    }
 }
