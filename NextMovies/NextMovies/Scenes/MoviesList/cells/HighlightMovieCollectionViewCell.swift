@@ -13,7 +13,7 @@ class HighlightMovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    func configCell(withMovie movie:Movie) {
+    func configCell(withMovie movie:MovieModel) {
         
         self.titleLabel.text = movie.title
         self.posterImageView.image = UIImage(named: movie.image ?? "")

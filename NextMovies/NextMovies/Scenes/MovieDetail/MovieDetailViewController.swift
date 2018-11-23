@@ -19,7 +19,7 @@ class MovieDetailViewController: UIViewController {
     
     @IBOutlet weak var summaryTextView: UITextView!
     
-    var movie:Movie?
+    var movie:MovieModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,16 @@ class MovieDetailViewController: UIViewController {
         
         if let movie = self.movie {
             
-            print(movie)
+            titleLabel.text = movie.title
+            durationLabel.text = movie.duration
+            ratingLabel.text = "⭐️ \(movie.rating?.rounded() ?? 0)/5"
+            summaryTextView.text = movie.summary
+            
+            if let imageData = movie.poster, let image = UIImage(data: imageData) {
+                movieImageView.image = image
+            }else{
+                movieImageView.image = nil
+            }
         }
     }
 

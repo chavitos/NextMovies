@@ -14,7 +14,7 @@ enum ItemType:String,Codable {
     case list   = "list"
 }
 
-struct Movie:Codable{
+struct MovieModel:Codable{
     
     let title       :String
     let categories  :[String]?
@@ -23,7 +23,8 @@ struct Movie:Codable{
     let summary     :String?
     let image       :String?
     let itemType    :ItemType?
-    let items       :[Movie]?
+    let items       :[MovieModel]?
+    var poster      :Data?
     
     enum CodingKeys:String,CodingKey {
         
@@ -35,5 +36,22 @@ struct Movie:Codable{
         case image
         case itemType
         case items
+    }
+    
+    init(title:String, categories:[String]?,duration:String?,rating:Double?,summary:String?,poster:Data?){
+        
+        self.title = title
+        self.categories = categories
+        self.duration = duration
+        self.rating = rating
+        self.summary = summary
+        self.poster = poster
+        self.image = nil
+        self.itemType = .movie
+        self.items = nil
+    }
+    
+    init() {
+        self.init(title: "", categories: nil, duration: nil, rating: nil, summary: nil, poster: nil)
     }
 }
