@@ -10,14 +10,14 @@ import UIKit
 
 class MockMoviesWorker:MoviesWorkerProtocol {
     
-    func getMovies(ofPage page: Int, completionHandler: @escaping (() throws -> [Movie]) -> Void) {
+    func getMovies(ofPage page: Int, completionHandler: @escaping (() throws -> [MovieModel]) -> Void) {
         
         guard let data = NSDataAsset(name: "movies")?.data else { return }
         
         do{
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase //já 'elimina' os _
-            let movies = try decoder.decode([Movie].self, from: data)
+            let movies = try decoder.decode([MovieModel].self, from: data)
             
             completionHandler{ return movies }
         }catch{

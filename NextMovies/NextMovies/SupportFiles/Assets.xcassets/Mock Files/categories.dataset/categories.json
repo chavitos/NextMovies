@@ -1,0 +1,26 @@
+[
+	{
+		"name":"Ação"
+	},
+	{
+		"name":"Aventura"
+	},
+	{
+		"name":"Fantasia"
+	},
+	{
+		"name":"Comédia"
+	},
+	{
+		"name":"Animação"
+	},
+	{
+		"name":"Terror"
+	},
+	{
+		"name":"Drama"
+	},
+	{
+		"name":"Suspense"
+	}
+]

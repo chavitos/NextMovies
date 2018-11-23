@@ -29,11 +29,15 @@ class MovieTableViewCell: UITableViewCell {
         ratingLabel.text        = ""
     }
 
-    func configCell(withMovie movie:Movie) {
+    func configCell(withMovie movie:MovieModel) {
+        
+        if let imageData = movie.poster, let image = UIImage(data: imageData) {
+            movieImagieView.image = image
+        }
         
         titleLabel.text         = movie.title
         descriptionLabel.text   = movie.summary ?? ""
-        ratingLabel.text        = "⭐️ \(movie.rating ?? 0)/10 "
+        ratingLabel.text        = "⭐️ \(movie.rating?.rounded() ?? 0)/5 "
     }
 
 }

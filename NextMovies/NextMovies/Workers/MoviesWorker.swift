@@ -16,9 +16,9 @@ class MoviesWorker{
         self.worker = worker
     }
     
-    func getMovies(ofPage page:Int, completionHandler:@escaping (([Movie]?,Error?) -> Void)){
+    func getMovies(ofPage page:Int, completionHandler:@escaping (([MovieModel]?,Error?) -> Void)){
         
-        worker.getMovies(ofPage: page) { (movies:() throws -> [Movie]) in
+        worker.getMovies(ofPage: page) { (movies:() throws -> [MovieModel]) in
             
             do {
                 let movies = try movies()
@@ -33,5 +33,5 @@ class MoviesWorker{
 
 protocol MoviesWorkerProtocol{
     
-    func getMovies(ofPage page:Int, completionHandler:@escaping (() throws -> [Movie]) -> Void)
+    func getMovies(ofPage page:Int, completionHandler:@escaping (() throws -> [MovieModel]) -> Void)
 }

@@ -13,7 +13,7 @@ class HighlightMoviesTableViewCell: UITableViewCell {
     let movieCollectionCellIdentifier = "movieCollectionCell"
     
     @IBOutlet weak var collection: UICollectionView!
-    var movies:[Movie] = []
+    var movies:[MovieModel] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,7 +21,7 @@ class HighlightMoviesTableViewCell: UITableViewCell {
         self.collection.dataSource = self
     }
 
-    func configCell(withMovies movies:[Movie]) {
+    func configCell(withMovies movies:[MovieModel]) {
         
         self.movies = movies
         collection.reloadData()

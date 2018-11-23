@@ -9,47 +9,63 @@
 import UIKit
 
 class MoviesListTableViewController: UITableViewController {
-
+    
     let movieCellIdentifier = "movieCell"
     let highlightMovieCellIdentifier = "highlightMovieCell"
     
-    var movies:[Movie] = []
+    var movies:[MovieModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        self.view.tintColor = UIColor.white
+        
+        //        self.view.tintColor = UIColor.white
         self.navigationController?.view.tintColor = UIColor.white
         self.navigationItem.leftBarButtonItem = self.editButtonItem
-
-        self.loadMovies()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadMovies()
     }
     
     private func loadMovies() {
         
-        let worker = MockMoviesWorker()
+        let worker = CoreDataMoviesWorker()
         MoviesWorker(worker: worker).getMovies(ofPage: 0) { [weak self] (movies, error) in
             
             guard let self = self else { return }
             
             if error == nil, let movies = movies {
                 
-                //TODO - Colocar empty state na table view
-                self.movies = movies
-                self.tableView.reloadData()
+                if movies.count > 0{
+                    self.movies = movies
+                    self.tableView.reloadData()
+                }else{
+                    
+                    let emptyLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0,
+                                                                    width: self.tableView.bounds.size.width,
+                                                                    height: self.tableView.bounds.size.height))
+                    emptyLabel.text          = "Não há filmes!"
+                    emptyLabel.textColor     = UIColor.white
+                    emptyLabel.backgroundColor = UIColor.black
+                    emptyLabel.textAlignment = .center
+                    self.tableView.backgroundView  = emptyLabel
+                    self.tableView.separatorStyle  = .none
+                }
             }else{
                 print("Erro ao tentar recuperar a lista de filmes: \(error?.localizedDescription ?? "-")")
             }
         }
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return movies.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let movie = movies[indexPath.row]
@@ -68,5 +84,27 @@ class MoviesListTableViewController: UITableViewController {
             return cell
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "segueMoviesListToDetail", sender: self)
+    }
+    
+    @IBAction func addMovie(_ sender: Any) {
+        
+        performSegue(withIdentifier: "segueMoviesListToAdd", sender: self)
+    }
+ 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "segueMoviesListToDetail" {
+            
+            let detail = segue.destination as? MovieDetailViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                
+                let movie = movies[indexPath.row]
+                detail?.movie = movie
+            }
+        }
+    }
 }

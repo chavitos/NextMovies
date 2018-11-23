@@ -18,6 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         CoreDataManager.sharedInstance.applicationDocumentsDirectory()
         
+        let fetch:NSFetchRequest<Category> = Category.fetchRequest()
+        do{
+            
+            let categories = try CoreDataManager.sharedInstance.persistentContainer.viewContext.fetch(fetch)
+            if categories.count <= 0 {
+                let worker = MockCategoryWorker()
+                CotegoryWorker(worker:worker).getCategories { (_, error) in
+                    
+                    if error == nil {
+                        print("Categorias recuperadas com sucesso")
+                    }
+                }
+            }else{
+                print("Categorias já carregadas")
+            }
+        }catch{
+            print("Erro ao tentar recuperar categorias: \(error.localizedDescription)")
+        }
+        
         return true
     }
 
