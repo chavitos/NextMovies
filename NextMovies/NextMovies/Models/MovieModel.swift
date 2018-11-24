@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum ItemType:String,Codable {
     
@@ -53,5 +54,15 @@ struct MovieModel:Codable{
     
     init() {
         self.init(title: "", categories: nil, duration: nil, rating: nil, summary: nil, poster: nil)
+    }
+    
+    func getCoreDataObj() -> Movie? {
+        
+        if let coredataObj:Movie = CoreDataManager.sharedInstance.getData(ofEntity: Movie.fetchRequest(), withPredicate: NSPredicate(format: "title == %@", self.title)).first{
+            
+            return coredataObj
+        }
+        
+        return nil
     }
 }

@@ -21,6 +21,8 @@ class MoviesListTableViewController: UITableViewController {
         //        self.view.tintColor = UIColor.white
         self.navigationController?.view.tintColor = UIColor.white
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
+        tableView.allowsSelectionDuringEditing = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +42,7 @@ class MoviesListTableViewController: UITableViewController {
                 
                 if movies.count > 0{
                     self.movies = movies
+                    self.tableView.backgroundView = nil
                     self.tableView.reloadData()
                 }else{
                     
@@ -87,7 +90,29 @@ class MoviesListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "segueMoviesListToDetail", sender: self)
+        if tableView.isEditing {
+            performSegue(withIdentifier: "segueMoviesListToAdd", sender: self)
+        }else{
+            performSegue(withIdentifier: "segueMoviesListToDetail", sender: self)
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete{
+            
+            let movie = movies[indexPath.row]
+            if let coredataObj = movie.getCoreDataObj() {
+             
+                if CoreDataManager.sharedInstance.deleteInCoreData(object: coredataObj) {
+                    
+                    movies = movies.filter { $0.title != movie.title }
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+            
+            loadMovies()
+        }
     }
     
     @IBAction func addMovie(_ sender: Any) {
@@ -104,6 +129,14 @@ class MoviesListTableViewController: UITableViewController {
                 
                 let movie = movies[indexPath.row]
                 detail?.movie = movie
+            }
+        }else if segue.identifier == "segueMoviesListToAdd" {
+            
+            let edit = segue.destination as? AddMovieViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                
+                let movie = movies[indexPath.row]
+                edit?.movie = movie.getCoreDataObj()
             }
         }
     }

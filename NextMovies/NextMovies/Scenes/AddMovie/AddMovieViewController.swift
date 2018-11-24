@@ -19,12 +19,23 @@ class AddMovieViewController: UIViewController {
     @IBOutlet weak var scrollview: UIScrollView!
     
     var categories:[Category] = []
+    var movie:Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        loadMovie()
+    }
+    
+    private func loadMovie() {
+        
+        if let movie = self.movie {
+            
+            
+        }
     }
     
     @objc func keyboardWillShow(notification:NSNotification) {
@@ -56,15 +67,17 @@ class AddMovieViewController: UIViewController {
     
     @IBAction func saveMovie(_ sender: Any) {
     
-        let newMovie = Movie(context: CoreDataManager.sharedInstance.persistentContainer.viewContext)
+        if movie == nil{
+            movie = Movie(context: CoreDataManager.sharedInstance.persistentContainer.viewContext)
+        }
         
-        newMovie.title = titleTextField.text ?? ""
-        newMovie.duration = durationTextField.text ?? "1h"
-        newMovie.rating = Double(rattingSlider.value)
-        newMovie.summary = summaryTextView.text
-        newMovie.image = posterImage.image?.pngData()
+        movie?.title = titleTextField.text ?? ""
+        movie?.duration = durationTextField.text ?? "1h"
+        movie?.rating = Double(rattingSlider.value)
+        movie?.summary = summaryTextView.text
+        movie?.image = posterImage.image?.pngData()
         
-        newMovie.categories = Set(categories)
+        movie?.categories = Set(categories)
         
         CoreDataManager.sharedInstance.saveContext()
         self.navigationController?.popViewController(animated: true)
