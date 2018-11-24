@@ -16,7 +16,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
-    
+
     @IBOutlet weak var summaryTextView: UITextView!
     
     var movie:MovieModel?
@@ -39,14 +39,44 @@ class MovieDetailViewController: UIViewController {
             if let imageData = movie.poster, let image = UIImage(data: imageData) {
                 movieImageView.image = image
             }else{
-                movieImageView.image = nil
+                movieImageView.image = UIImage(named: "placeholder")
             }
+            
+            if let categories = movie.categories, categories.count > 0 {
+                
+                var categoriesString = ""
+                
+                for (index,category) in categories.enumerated() {
+                    
+                    if index == 0{
+                        categoriesString = category
+                    }else{
+                        categoriesString = categoriesString + "|" + category
+                    }
+                }
+                
+                categoriesLabel.text = categoriesString
+            }else{
+                categoriesLabel.text = "-"
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "segueDetailToEdit", let editVC = segue.destination as? AddMovieViewController {
+            
+            editVC.movie = self.movie?.getCoreDataObj()
         }
     }
 
     @IBAction func playTrailer(_ sender: Any) {
         
         print("Playing trailer!")
+    }
+    
+    @IBAction func editMovie(_ sender: Any) {
+        performSegue(withIdentifier: "segueDetailToEdit", sender: self)
     }
     
     @IBAction func back(_ sender: Any) {

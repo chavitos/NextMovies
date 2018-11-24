@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wil-7B-5J2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wil-7B-5J2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gud-YL-IwT">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="502"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="shm-qA-u4x">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Ue-w5-uh9">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="172"/>
@@ -44,7 +45,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="clk-0s-nXj">
-                                                <rect key="frame" x="8" y="355" width="359" height="191"/>
+                                                <rect key="frame" x="8" y="355" width="359" height="139"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -74,7 +75,8 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="5vg-GL-OUa" kind="show" identifier="segueAddMovieToCategories" id="bbe-2a-Yee"/>
+                                                    <action selector="categoriesButton:" destination="Bsb-5O-lDk" eventType="touchUpInside" id="30P-tw-I2y"/>
+                                                    <segue destination="5vg-GL-OUa" kind="show" identifier="segueAddMovieToCategories" id="z3v-ay-c8K"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sinopse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iN-0T-BZf">
@@ -147,6 +149,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="categoriesButton" destination="QRd-pm-99u" id="2ET-IP-Tg6"/>
                         <outlet property="durationTextField" destination="IQs-gG-ajU" id="WQN-fd-vg2"/>
                         <outlet property="posterImage" destination="3Ue-w5-uh9" id="bJl-1W-ibf"/>
                         <outlet property="rattingSlider" destination="0v0-uA-2Lu" id="Po9-NB-45y"/>
@@ -156,6 +159,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ehw-mF-GT2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Bsb-5O-lDk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3104.8000000000002" y="-604.04797601199402"/>
         </scene>
@@ -219,9 +223,10 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="C8e-xN-WJQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="QEf-bd-ZsV">
-                            <rect key="frame" x="0.0" y="386" width="375" height="0.0"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableFooterView" clipsSubviews="YES" contentMode="scaleToFill" id="QEf-bd-ZsV">
+                            <rect key="frame" x="0.0" y="386" width="375" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -399,16 +404,16 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RNd-Or-IO2">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="300.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="312"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="H8C-od-fNm">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="202"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="213.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avengers" translatesAutoresizingMaskIntoConstraints="NO" id="8oT-KF-2YG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="202"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="213.5"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6Z-tx-fHv">
-                                                        <rect key="frame" x="147.5" y="61" width="80" height="80"/>
+                                                        <rect key="frame" x="147.5" y="67" width="80" height="80"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="80" id="WfD-rB-Rde"/>
                                                             <constraint firstAttribute="width" constant="80" id="onh-CD-cmY"/>
@@ -419,7 +424,7 @@
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="IeS-zn-59U">
-                                                        <rect key="frame" x="0.0" y="142" width="375" height="60"/>
+                                                        <rect key="frame" x="0.0" y="153.5" width="375" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="FTW-Qk-OGX"/>
                                                         </constraints>
@@ -439,13 +444,13 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Título do filme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1h7-sa-pC4">
-                                                <rect key="frame" x="8" y="210" width="359" height="33.5"/>
+                                                <rect key="frame" x="8" y="221.5" width="359" height="33.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="BG5-KT-fxG">
-                                                <rect key="frame" x="8" y="251.5" width="359" height="20.5"/>
+                                                <rect key="frame" x="8" y="263" width="359" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Ação | Suspense | Terror" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aq8-Ug-AgK">
                                                         <rect key="frame" x="0.0" y="0.0" width="307" height="20.5"/>
@@ -462,7 +467,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⭐️ Nota: 10/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dC-e7-nFQ">
-                                                <rect key="frame" x="8" y="280" width="359" height="20.5"/>
+                                                <rect key="frame" x="8" y="291.5" width="359" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -480,7 +485,7 @@
                                         <variation key="heightClass=compact" spacing="6"/>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iSI-VB-hzU">
-                                        <rect key="frame" x="0.0" y="308.5" width="375" height="245.5"/>
+                                        <rect key="frame" x="0.0" y="320" width="375" height="234"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sinopse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afX-fZ-UcC">
                                                 <rect key="frame" x="8" y="8" width="359" height="17"/>
@@ -489,7 +494,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="O4H-p8-1mB">
-                                                <rect key="frame" x="8" y="33" width="359" height="204.5"/>
+                                                <rect key="frame" x="8" y="33" width="359" height="193"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <string key="text">A única área que eu acho, que vai exigir muita atenção nossa, e aí eu já aventei a hipótese de até criar um ministério. É na área de... Na área... Eu diria assim, como uma espécie de analogia com o que acontece na área agrícola.
 
@@ -531,6 +536,9 @@ No meu xinélo da humildade eu gostaria muito de ver o Neymar e o Ganso. Por que
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="jLl-ZZ-bcp">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="editMovie:" destination="htU-DR-ObH" id="xdm-Co-1Aq"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -631,6 +639,6 @@ No meu xinélo da humildade eu gostaria muito de ver o Neymar e o Ganso. Por que
         <image name="settings_ico" width="34.5" height="34.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wL2-gy-HsC"/>
+        <segue reference="oxU-36-FdJ"/>
     </inferredMetricsTieBreakers>
 </document>

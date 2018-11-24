@@ -17,6 +17,7 @@ class AddMovieViewController: UIViewController {
     @IBOutlet weak var rattingSlider: UISlider!
     @IBOutlet weak var summaryTextView: UITextView!
     @IBOutlet weak var scrollview: UIScrollView!
+    @IBOutlet weak var categoriesButton: UIButton!
     
     var categories:[Category] = []
     var movie:Movie?
@@ -46,6 +47,12 @@ class AddMovieViewController: UIViewController {
             }
             
             self.categories = Array(movie.categories ?? [])
+            
+            if categories.count == 0{
+                categoriesButton.setTitle("Selecionar Categorias >", for:.normal)
+            }else{
+                categoriesButton.setTitle("\(categories.count) categorias >", for:.normal)
+            }
         }else{
             
             titleTextField.text = ""
@@ -99,12 +106,12 @@ class AddMovieViewController: UIViewController {
         movie?.categories = Set(categories)
         
         CoreDataManager.sharedInstance.saveContext()
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated:true)
     }
     
     @IBAction func back(_ sender: Any) {
         
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated:true)
     }
     
     @IBAction func selectImage(_ sender: Any) {
@@ -176,5 +183,11 @@ extension AddMovieViewController:CategoriesListProtocol{
     func saveCategories(categories: [Category]) {
         
         self.categories = categories
+        
+        if categories.count == 0{
+            categoriesButton.setTitle("Selecionar Categorias >", for:.normal)
+        }else{
+            categoriesButton.setTitle("\(categories.count) categorias >", for:.normal)
+        }
     }
 }

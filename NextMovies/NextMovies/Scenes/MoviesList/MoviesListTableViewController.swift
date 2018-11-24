@@ -106,7 +106,7 @@ class MoviesListTableViewController: UITableViewController {
              
                 if CoreDataManager.sharedInstance.deleteInCoreData(object: coredataObj) {
                     
-                    movies = movies.filter { $0.title != movie.title }
+                    movies.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }
             }
