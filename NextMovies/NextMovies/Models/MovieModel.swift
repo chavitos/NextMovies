@@ -25,6 +25,7 @@ struct MovieModel:Codable{
     let image       :String?
     let itemType    :ItemType?
     let items       :[MovieModel]?
+    var trailerUrl  :String?
     var poster      :Data?
     
     enum CodingKeys:String,CodingKey {
@@ -39,7 +40,7 @@ struct MovieModel:Codable{
         case items
     }
     
-    init(title:String, categories:[String]?,duration:String?,rating:Double?,summary:String?,poster:Data?){
+    init(title:String, categories:[String]?,duration:String?,rating:Double?,summary:String?,poster:Data?,trailer:String?){
         
         self.title = title
         self.categories = categories
@@ -50,10 +51,11 @@ struct MovieModel:Codable{
         self.image = nil
         self.itemType = .movie
         self.items = nil
+        self.trailerUrl = trailer
     }
     
     init() {
-        self.init(title: "", categories: nil, duration: nil, rating: nil, summary: nil, poster: nil)
+        self.init(title: "", categories: nil, duration: nil, rating: nil, summary: nil, poster: nil,trailer:"")
     }
     
     func getCoreDataObj() -> Movie? {

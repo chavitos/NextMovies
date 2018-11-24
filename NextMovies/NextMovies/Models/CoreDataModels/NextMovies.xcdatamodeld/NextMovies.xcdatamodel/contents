@@ -10,10 +10,11 @@
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trailerUrl" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="movies" inverseEntity="Category" syncable="YES"/>
     </entity>
     <elements>
         <element name="Category" positionX="-54" positionY="-9" width="128" height="75"/>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Movie" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>

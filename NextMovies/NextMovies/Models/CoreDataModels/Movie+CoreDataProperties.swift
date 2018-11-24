@@ -18,6 +18,7 @@ extension Movie {
     }
 
     @NSManaged public var title: String?
+    @NSManaged public var trailerUrl: String?
     @NSManaged public var duration: String?
     @NSManaged public var rating: Double
     @NSManaged public var summary: String?
