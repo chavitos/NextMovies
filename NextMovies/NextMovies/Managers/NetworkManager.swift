@@ -10,40 +10,29 @@ import Foundation
 import Alamofire
 
 public enum MovieNextRequests: URLRequestConvertible {
+//    https://itunes.apple.com/search?media=movie&entity=movie&term=Deadpool 2
+    static let baseURLPath = "https://itunes.apple.com"
     
-    static let baseURLPath = "https://api.themoviedb.org/3"
-    static let apiKey = "1f54bd990f1cdfb230adb312546d765d"
-    
-    case upcomingMovies(Int)
-    case movieDetail(String)
-    case genres
+    case getMovieInfo(String)
     
     var method: HTTPMethod {
         switch self {
-        case .upcomingMovies, .movieDetail, .genres:
+        case .getMovieInfo:
             return .get
         }
     }
     
     var path: String {
         switch self {
-        case .upcomingMovies:
-            return "/movie/upcoming"
-        case .movieDetail(let movieId):
-            return movieId
-        case .genres:
-            return "/genre/movie/list"
+        case .getMovieInfo:
+            return "/search"
         }
     }
     
     var parameters: [String: Any] {
         switch self {
-        case .upcomingMovies(let page):
-            return ["api_key": MovieNextRequests.apiKey,"language":"en-US","page":page]
-        case .movieDetail:
-            return ["api_key": MovieNextRequests.apiKey]
-        case .genres:
-            return ["api_key": MovieNextRequests.apiKey,"language":"en-US"]
+        case .getMovieInfo(let title):
+            return ["media": "movie","entity":"movie","term":title]
         }
     }
     
@@ -61,7 +50,7 @@ public enum MovieNextRequests: URLRequestConvertible {
 
 class NetworkManager {
     
-    func getData(ofURL url:URLRequestConvertible, callback:@escaping (Data?,Error?)->Void) {
+    class func getData(ofURL url:URLRequestConvertible, callback:@escaping (Data?,Error?)->Void) {
         
         Alamofire.request(url).validate().responseJSON { response in
             

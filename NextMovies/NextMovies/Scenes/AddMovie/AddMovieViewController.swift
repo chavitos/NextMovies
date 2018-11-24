@@ -93,20 +93,32 @@ class AddMovieViewController: UIViewController {
     
     @IBAction func saveMovie(_ sender: Any) {
     
-        if movie == nil{
-            movie = Movie(context: CoreDataManager.sharedInstance.persistentContainer.viewContext)
+        let worker = NetworkTrailerWorker()
+        TrailerWorker(worker: worker).getMovies(ofMovie:titleTextField.text ?? "") { [weak self] (trailerResult, error) in
+            
+            guard let self = self else { return }
+            
+            if self.movie == nil{
+                self.movie = Movie(context: CoreDataManager.sharedInstance.persistentContainer.viewContext)
+            }
+            
+            if error == nil {
+                self.movie?.trailerUrl = trailerResult?.trailer
+            }else{
+                self.movie?.trailerUrl = ""
+            }
+            
+            self.movie?.title = self.titleTextField.text ?? ""
+            self.movie?.duration = self.durationTextField.text ?? "1h"
+            self.movie?.rating = Double(self.rattingSlider.value)
+            self.movie?.summary = self.summaryTextView.text
+            self.movie?.image = self.posterImage.image?.pngData()
+            
+            self.movie?.categories = Set(self.categories)
+            
+            CoreDataManager.sharedInstance.saveContext()
+            self.navigationController?.popToRootViewController(animated:true)
         }
-        
-        movie?.title = titleTextField.text ?? ""
-        movie?.duration = durationTextField.text ?? "1h"
-        movie?.rating = Double(rattingSlider.value)
-        movie?.summary = summaryTextView.text
-        movie?.image = posterImage.image?.pngData()
-        
-        movie?.categories = Set(categories)
-        
-        CoreDataManager.sharedInstance.saveContext()
-        self.navigationController?.popToRootViewController(animated:true)
     }
     
     @IBAction func back(_ sender: Any) {

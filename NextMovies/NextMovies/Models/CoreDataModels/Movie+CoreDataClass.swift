@@ -23,6 +23,6 @@ public class Movie: NSManagedObject {
             categories.append(category.name ?? "")
         }
         
-        return MovieModel(title: title, categories: categories, duration: duration, rating: self.rating, summary: summary, poster: self.image)
+        return MovieModel(title: title, categories: categories, duration: duration, rating: self.rating, summary: summary, poster: self.image,trailer:self.trailerUrl)
     }
 }
