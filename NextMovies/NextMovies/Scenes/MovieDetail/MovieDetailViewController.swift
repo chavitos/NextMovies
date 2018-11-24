@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class MovieDetailViewController: UIViewController {
 
@@ -73,6 +74,25 @@ class MovieDetailViewController: UIViewController {
     @IBAction func playTrailer(_ sender: Any) {
         
         print("Playing trailer!")
+        
+        guard let trailerPath = movie?.trailerUrl, let url = URL(string:trailerPath) else {
+            
+            let alert = UIAlertController(title: "Aviso", message: "Não é possível reproduzir o trailer do file :(", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok :///", style: .default, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: true)
+            
+            return
+        }
+        
+        
+        let player = AVPlayer(url: url)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        
+        present(playerViewController, animated: true) {
+            player.play()
+        }
     }
     
     @IBAction func editMovie(_ sender: Any) {
