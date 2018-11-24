@@ -59,6 +59,46 @@ class CoreDataManager{
         }
     }
     
+    func getData<T>(ofEntity entityFetchRequest:NSFetchRequest<NSFetchRequestResult>, withPredicate predicate:NSPredicate?) -> [T] {
+        
+        let context = self.persistentContainer.viewContext
+        let fetchRequest = entityFetchRequest
+        
+        if let predicate = predicate {
+            
+            fetchRequest.predicate = predicate
+        }
+        
+        do {
+            
+            if let result = try context.fetch(fetchRequest) as? [T] {
+                return result
+            }
+            return []
+        }catch let err as NSError{
+            NSLog("Error trying to fetch coredata -> \(err.description)")
+        }
+        
+        return []
+    }
+    
+    func deleteInCoreData<T:NSManagedObject>(object:T) -> Bool {
+        
+        var success = true
+        
+        let context = self.persistentContainer.viewContext
+        context.delete(object)
+        
+        do {
+            try context.save()
+        } catch let error {
+            success = false
+            print(error.localizedDescription)
+        }
+        
+        return success
+    }
+    
     func deleteAllData(entity: String)
     {
         let managedContext = self.persistentContainer

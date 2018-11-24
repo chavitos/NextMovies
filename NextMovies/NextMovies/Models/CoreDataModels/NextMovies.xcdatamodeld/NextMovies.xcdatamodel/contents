@@ -13,7 +13,7 @@
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="movies" inverseEntity="Category" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="133"/>
         <element name="Category" positionX="-54" positionY="-9" width="128" height="75"/>
+        <element name="Movie" positionX="-63" positionY="-18" width="128" height="133"/>
     </elements>
 </model>
