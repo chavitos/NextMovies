@@ -34,7 +34,26 @@ class AddMovieViewController: UIViewController {
         
         if let movie = self.movie {
             
+            titleTextField.text = movie.title
+            durationTextField.text = movie.duration
+            rattingSlider.value = Float(movie.rating)
+            summaryTextView.text = movie.summary
             
+            if let imageData = movie.image, let image = UIImage(data: imageData) {
+                posterImage.image = image
+            }else{
+                posterImage.image = nil
+            }
+            
+            self.categories = Array(movie.categories ?? [])
+        }else{
+            
+            titleTextField.text = ""
+            durationTextField.text = ""
+            rattingSlider.value = 2.5
+            summaryTextView.text = ""
+
+            posterImage.image = nil
         }
     }
     

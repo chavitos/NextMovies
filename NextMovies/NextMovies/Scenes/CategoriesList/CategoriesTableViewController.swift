@@ -51,6 +51,11 @@ class CategoriesTableViewController: UITableViewController {
 
         let category = categories[indexPath.row]
         cell.textLabel?.text = category.name ?? "-"
+        
+        if categoriesToSave.contains(category){
+            
+            cell.accessoryType = .checkmark
+        }
 
         return cell
     }
