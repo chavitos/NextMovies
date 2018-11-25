@@ -8,11 +8,13 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let center = UNUserNotificationCenter.current()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -35,6 +37,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }catch{
             print("Erro ao tentar recuperar categorias: \(error.localizedDescription)")
+        }
+        
+        center.delegate = self
+        center.getNotificationSettings { (settings) in
+            
+        }
+        
+        //destructive título vermelho e authorization pede para deslockar para exibir
+        let confirmAction = UNNotificationAction(identifier: "Confirm", title: "Ok, vou ver!", options: .foreground)
+        let category = UNNotificationCategory(identifier: "lembrete", actions: [confirmAction], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: [.customDismissAction])
+        
+        self.center.setNotificationCategories(Set([category]))
+        
+        center.requestAuthorization(options: [.alert,.badge]) { (success, error) in
+            
+            print(success)
         }
         
         return true
@@ -65,3 +83,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension AppDelegate:UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        if response.actionIdentifier == "confirm" {
+            
+            print("confirm")
+        }else if response.actionIdentifier == "cancel" {
+            
+            print("cancel")
+        }else if response.actionIdentifier == UNNotificationDefaultActionIdentifier { // quando ele tocou na notif
+            
+            print("tocou")
+        }else if response.actionIdentifier == UNNotificationDismissActionIdentifier {
+            
+            print("dismiss")
+        }
+        
+        completionHandler()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        completionHandler([.alert,.badge])
+    }
+}

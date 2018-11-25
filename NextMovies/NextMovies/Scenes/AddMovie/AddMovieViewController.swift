@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class AddMovieViewController: UIViewController {
 
@@ -117,6 +118,29 @@ class AddMovieViewController: UIViewController {
             self.movie?.categories = Set(self.categories)
             
             CoreDataManager.sharedInstance.saveContext()
+            
+            //id da notificação
+            let id = String(Date().timeIntervalSince1970)
+            
+            //conteúdo da notificação
+            let content = UNMutableNotificationContent()
+            content.title = "Lembrete"
+            content.subtitle = "Assista \(self.titleTextField.text ?? "")"
+            content.categoryIdentifier = "lembrete"
+            
+            //schedule trigger
+            let date = Calendar.current.date(byAdding: .day, value: 3, to: Date())
+            let dateComponents = Calendar.current.dateComponents([.day,.month,.year,.hour,.minute,.second], from: date ?? Date())
+            let scheduleTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            let request = UNNotificationRequest(identifier: id, content: content, trigger: scheduleTrigger)
+            
+            UNUserNotificationCenter.current().add(request) { (error) in
+                
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+            
             self.navigationController?.popToRootViewController(animated:true)
         }
     }
