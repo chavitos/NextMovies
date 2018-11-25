@@ -60,6 +60,10 @@ class MovieDetailViewController: UIViewController {
             }else{
                 categoriesLabel.text = "-"
             }
+            
+            if UserDefaults.standard.bool(forKey: UserDefaults.Keys.autoPlay) {
+                playTrailer(self)
+            }
         }
     }
     
